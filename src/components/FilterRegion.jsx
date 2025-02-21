@@ -3,10 +3,11 @@ import useCustomContext from "../CustomContext";
 
 const FilterRegion = () => {
 
-    const {modeToggle, allFilters, fetchCountries, regionFilter, setRegionFilter, setSubRegionsInARegion} = useCustomContext();
+    const {modeToggle, allFilters, fetchCountries, regionFilter, setRegionFilter, setSubRegionsInARegion, setSelectedSortFilter} = useCustomContext();
 
     useEffect(() => {
         fetchCountries();
+        setSelectedSortFilter(''); //reset sort filters since data is being changed
       }, [regionFilter]);
       
 

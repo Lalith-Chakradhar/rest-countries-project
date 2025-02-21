@@ -15,6 +15,8 @@ export const CustomProvider = ({children}) => {
     const [subregionsInARegion, setSubRegionsInARegion] = useState([]);
     const [subRegionFilter, setSubRegionFilter] = useState('');
 
+    const [selectedSortFilter, setSelectedSortFilter] = useState('');
+    
 
     const fetchCountries = async() => {
 
@@ -104,6 +106,36 @@ export const CustomProvider = ({children}) => {
         }
     }
 
+
+    const applySortFilter = () => {
+
+        if(countriesData && selectedSortFilter !== '')
+        {
+            let sortedData;
+
+            let duplicatedCountriesData = [...countriesData];
+
+            if(selectedSortFilter === 'Lowest to Highest Population')
+            {
+                sortedData = duplicatedCountriesData.sort((country1, country2) => country1['population'] - country2['population']);
+            }
+            else if(selectedSortFilter === 'Highest to Lowest Population')
+            {
+                sortedData = duplicatedCountriesData.sort((country1, country2) => country2['population'] - country1['population']);
+            }
+            else if(selectedSortFilter === 'Lowest to Highest Area')
+            {
+                sortedData = duplicatedCountriesData.sort((country1, country2) => country1['area'] - country2['area']);
+            }
+            else
+            {
+                sortedData = duplicatedCountriesData.sort((country1, country2) => country2['area'] - country1['area']);
+            }
+
+            setCountriesData(sortedData);
+        }
+    }
+
     return (
         <CustomContext.Provider value={{modeToggle, 
         setModeToggle, 
@@ -117,7 +149,10 @@ export const CustomProvider = ({children}) => {
         subregionsInARegion,
         setSubRegionsInARegion,
         subRegionFilter, 
-        setSubRegionFilter}}>
+        setSubRegionFilter,
+        applySortFilter,
+        selectedSortFilter,
+        setSelectedSortFilter}}>
             {children}
         </CustomContext.Provider>
     );

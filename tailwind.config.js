@@ -13,6 +13,7 @@ export default {
         'dark-gray': 'hsl(0, 0%, 52%)',
         'very-light-gray': 'hsl(0, 0%, 98%)',
         'white': 'hsl(0, 0%, 100%)',
+        'denim' : 'hsl(215, 79%, 46%)'
       },
       fontFamily: {
         sans: ['Nunito Sans', 'sans-serif'],
