@@ -12,6 +12,9 @@ export const CustomProvider = ({children}) => {
     const [regionFilter, setRegionFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
+    const [subregionsInARegion, setSubRegionsInARegion] = useState([]);
+    const [subRegionFilter, setSubRegionFilter] = useState('');
+
 
     const fetchCountries = async() => {
 
@@ -24,7 +27,29 @@ export const CustomProvider = ({children}) => {
             {
 
                 const filteredData = data.filter((country)=> country.region === regionFilter);
-                setCountriesData(filteredData);
+                setCountriesData(filteredData); //We got all the countries in a particular Region
+
+
+                setSubRegionsInARegion(() => {
+                    let newState = filteredData.reduce((allSubRegions,country)=> {
+ 
+                         if(!allSubRegions.includes(country.subregion))
+                         {
+                            allSubRegions.push(country.subregion);
+                         }
+ 
+                         return allSubRegions;
+                     },[]);
+ 
+                     return newState;
+                 });
+
+
+                if(subRegionFilter !== '' && subregionsInARegion.length!==0)
+                {
+                    const filteredData = data.filter((country)=> (country.region === regionFilter && country.subregion === subRegionFilter));
+                    setCountriesData(filteredData); //We got all the countries in a particular Region as well in a subregion
+                }
 
             }
             else if(searchTerm.length!==0 && regionFilter === '')
@@ -39,7 +64,13 @@ export const CustomProvider = ({children}) => {
             else if(regionFilter !== '' && allFilters.length!==0 && searchTerm.length!==0)
             {
 
-                const filteredData = data.filter((country)=> country.region === regionFilter);
+                let filteredData = data.filter((country)=> country.region === regionFilter);
+
+
+                if(subRegionFilter !== '' && subregionsInARegion.length!==0)
+                {
+                    filteredData = filteredData.filter((country)=> (country.subregion === subRegionFilter));
+                }
 
                 const searchExp = new RegExp(searchTerm, 'i');
 
@@ -74,7 +105,19 @@ export const CustomProvider = ({children}) => {
     }
 
     return (
-        <CustomContext.Provider value={{modeToggle, setModeToggle, countriesData, fetchCountries, allFilters, regionFilter, setRegionFilter, searchTerm, setSearchTerm}}>
+        <CustomContext.Provider value={{modeToggle, 
+        setModeToggle, 
+        countriesData, 
+        fetchCountries, 
+        allFilters, 
+        regionFilter, 
+        setRegionFilter, 
+        searchTerm, 
+        setSearchTerm,
+        subregionsInARegion,
+        setSubRegionsInARegion,
+        subRegionFilter, 
+        setSubRegionFilter}}>
             {children}
         </CustomContext.Provider>
     );
