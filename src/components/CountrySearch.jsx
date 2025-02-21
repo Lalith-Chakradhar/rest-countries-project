@@ -10,7 +10,7 @@ const CountrySearch = () => {
         }, [searchTerm]);
 
   return (
-    <div className={`${modeToggle === 'Dark' ? 'bg-dark-blue' : 'bg-white'} mx-4 rounded-md shadow-lg py-4 px-7 flex items-center gap-6 lg:w-1/3`}>
+    <div className={`${modeToggle === 'Dark' ? 'bg-dark-blue' : 'bg-white'} mx-4 rounded-md shadow-lg py-4 px-7 flex items-center gap-6 lg:w-9/12`}>
         <ion-icon name="search-sharp"/>
         <input type="text" 
         value={searchTerm}

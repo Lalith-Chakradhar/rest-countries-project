@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
      <header className={`${modeToggle === 'Dark' ? 'bg-dark-blue' : 'bg-white'} flex justify-between py-8 px-4 shadow-md lg:px-[5.5rem]`}>
-        <div className='font-bold'>Where in the world?</div>
+        <div className='font-bold lg:text-xl'>Where in the world?</div>
         <button onClick={()=> setModeToggle(modeToggle === 'Light' ? 'Dark' : 'Light')}>
             {modeToggle === 'Light'? (
               <div className="flex items-center gap-3">
