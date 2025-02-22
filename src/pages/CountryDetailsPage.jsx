@@ -6,11 +6,12 @@ import useCustomContext from '../CustomContext';
 const CountryDetailsPage = () => {
 
     const { id } = useParams();
-    const { modeToggle, fetchCountries,setSearchTerm, countriesData, setCountryDetails, countryDetails } = useCustomContext();
+    const { modeToggle, fetchCountries,setSearchTerm, setRegionFilter, countriesData, setCountryDetails, countryDetails } = useCustomContext();
 
 
     useEffect(() => {
 
+        setRegionFilter(''); //Inorder to achieve countries which are bordering other region countries, we need to remove this filter as well.
         setSearchTerm(''); //fetching countries data on previous search. But I need all the countries for accessing the borders.
 
         if (!countriesData) 
