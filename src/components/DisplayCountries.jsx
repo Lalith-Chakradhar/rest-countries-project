@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useCustomContext from "../CustomContext";
+import {Link} from 'react-router-dom';
 import CountryCard from "./CountryCard";
 
 const DisplayCountries = () => {
@@ -13,10 +14,11 @@ const DisplayCountries = () => {
         (countriesData.length>0) ? (
           countriesData.map((country) => {
             return (
-              <CountryCard
-                key={country['cca3']}
-                country={country}
-              />
+              <Link key={country['cca3']} to={`/country/${country['cca3']}`}>
+                <CountryCard
+                  country={country}
+                />
+              </Link>
             );
           })
         ) : <div className={`${modeToggle === 'Dark' ? 'text-white' : 'text-dark-blue'} text-xl lg:text-5xl text-center mt-14`}>The countries with the specified search term were not found</div>

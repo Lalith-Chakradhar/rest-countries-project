@@ -28,6 +28,7 @@ export const CustomProvider = ({children}) => {
             const response = await fetch('https://restcountries.com/v3.1/all');
             const data = await response.json();
 
+
             if(regionFilter !== '' && allFilters.length!==0 && searchTerm.length===0)
             {
 
