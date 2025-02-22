@@ -11,15 +11,11 @@ const DisplayCountries = () => {
     <div className="flex flex-wrap gap-16 justify-center mx-4 lg:w-[98%] lg:justify-evenly">
       {(countriesData) ? (
         (countriesData.length>0) ? (
-          countriesData.map((country,index) => {
+          countriesData.map((country) => {
             return (
               <CountryCard
-                key={index}
-                flag={country['flags']['png']}
-                name={country["name"]["common"]}
-                population={country["population"]}
-                region={country["region"]}
-                capital={country["capital"]}
+                key={country['cca3']}
+                country={country}
               />
             );
           })

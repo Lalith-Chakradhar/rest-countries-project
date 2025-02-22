@@ -16,6 +16,9 @@ export const CustomProvider = ({children}) => {
     const [subRegionFilter, setSubRegionFilter] = useState('');
 
     const [selectedSortFilter, setSelectedSortFilter] = useState('');
+
+    const [countryDetails, setCountryDetails] = useState(null);
+    
     
 
     const fetchCountries = async() => {
@@ -152,7 +155,10 @@ export const CustomProvider = ({children}) => {
         setSubRegionFilter,
         applySortFilter,
         selectedSortFilter,
-        setSelectedSortFilter}}>
+        setSelectedSortFilter,
+        countryDetails,
+        setCountryDetails
+        }}>
             {children}
         </CustomContext.Provider>
     );
